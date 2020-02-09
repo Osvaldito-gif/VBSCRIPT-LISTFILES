@@ -1,0 +1,23 @@
+    Set objfso = createobject("scripting.filesystemobject")
+    Set RegFile = objfso.createtextfile("RegFile.txt",True)
+    
+   'Entre comillas indica la unidad a revisar
+    
+    Set IDir = objfso.getfolder("c:\")
+     
+    ListDirs(IDir)
+     
+    Function ListDirs(IFol)
+     
+    Regfile.writeline IFol.path
+    Set SubsIFol = IFol.subfolders
+     
+    On error resume next
+    For each SF in SubsIFol
+       ListDirs(SF)
+    Next
+     
+    End Function
+     
+    Msgbox "Proceso Terminado"
+    'Lo guardan en Bloc de Notas y con extencion .vbs
